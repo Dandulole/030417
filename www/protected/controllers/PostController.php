@@ -21,16 +21,21 @@ class PostController extends Controller
         
         public function actionView($alias) {
             
-            //$url = $this->createUrl('post/views');
-            echo $alias;
             $criteria = new CDbCriteria;
-            $criteria->compare('title',$alias);
-            //$criteria->compare('status',1);
+            $criteria->compare('cpu_uri',$alias);
+            //$criteria->compare('title',Post::makeUrlCode($alias));
+            $criteria->compare('status',1);
+            
 
             $model = Post::model()->find($criteria);
+
             
             if ($model) {
                 $this->render('view', array('model'=>$model));
-            } else echo "model is NULL";
+            } else {
+                echo "model is NULL";
+                echo '<br>';
+                echo 'alias = ' .  Post::makeUrlCode($alias);
+            }
         }
 }

@@ -13,7 +13,7 @@ $this->breadcrumbs=array(
 
 
 <?php foreach ($model as $value): ?>
-    <h1><?=$value->title?></h1>
+    <h1><?= CHtml::link($value->title, Yii::app()->getBaseUrl(true) .'/'. Yii::app()->controller->id .'/'. Post::makeUrlCode($value->title))?></h1>
     <p><?=$value->content?></p>
     <hr><br>
 <?php endforeach; ?>
